@@ -1,3 +1,13 @@
+# `mustangostang/spyc` WP-CLI fork
+
+This is a fork of the [`mustangostang/spyc`](https://github.com/mustangostang/spyc) package, under a different name to avoid potential security issues.
+
+See [`wp-cli/wp-cli#4017`](https://github.com/wp-cli/wp-cli/issues/4017) for more information.
+
+**_Original documentation follows below:_**
+
+---
+
 **Spyc** is a YAML loader/dumper written in pure PHP. Given a YAML document, Spyc will return an array that
 you can use however you see fit. Given an array, Spyc will return a string which contains a YAML document 
 built from your data.

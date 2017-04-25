@@ -1,12 +1,7 @@
 {
-    "name": "mustangostang/spyc",
-    "description": "A simple YAML loader/dumper class for PHP",
+    "name": "wp-cli/mustangostang-spyc",
+    "description": "A simple YAML loader/dumper class for PHP (WP-CLI fork)",
     "type": "library",
-    "keywords": [
-        "spyc",
-        "yaml",
-        "yml"
-    ],
     "homepage": "https://github.com/mustangostang/spyc/",
     "authors" : [{
         "name": "mustangostang",
