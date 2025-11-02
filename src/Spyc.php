@@ -1063,7 +1063,7 @@ class Spyc {
         $key     = trim(array_shift($explode));
         $value   = trim(implode(': ', $explode));
         $this->checkKeysInValue($value);
-		// Other methods currently don't parse valid json maps or arrays of maps correctly
+      // Other methods currently don't parse valid json maps or arrays of maps correctly
         if ( str_starts_with( $value, '[{' ) || str_starts_with( $value, '{"' ) ) {
           $value = json_decode( preg_replace( '/^.*?:\s*/', '', $line ), true );
         }
