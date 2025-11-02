@@ -1070,8 +1070,8 @@ class Spyc {
       }
       // Set the type of the value.  Int, string, etc
       if ( ! is_array( $value ) ) {
-         $value = $this->_toType($value);
-         if ($key === '0') $key = '__!YAMLZero';
+        $value = $this->_toType($value);
+        if ($key === '0') $key = '__!YAMLZero';
       }
       $array[$key] = $value;
     } else {
