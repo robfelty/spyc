@@ -1065,7 +1065,12 @@ class Spyc {
         $this->checkKeysInValue($value);
       // Other methods currently don't parse valid json maps or arrays of maps correctly
         if ( str_starts_with( $value, '[{' ) || str_starts_with( $value, '{"' ) ) {
-          $value = json_decode( preg_replace( '/^.*?:\s*/', '', $line ), true );
+          $decoded = json_decode( preg_replace( '/^.*?:\s*/', '', $line ), true );
+          if ($decoded !== null || (json_last_error() === JSON_ERROR_NONE && $decoded === null)) {
+            // Accept null as valid JSON value, but only if no error occurred
+            $value = $decoded;
+          }
+          // Otherwise, leave $value as-is (fallback to original string)
         }
       }
       // Set the type of the value.  Int, string, etc
