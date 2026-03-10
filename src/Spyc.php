@@ -297,7 +297,7 @@ class Spyc {
     if (self::isTranslationWord($value)) {
       $value = $this->_doLiteralBlock($value, $indent);
     }
-    if (trim ($value) != $value)
+    if (trim ($value === null ? '' : $value) != $value)
        $value = $this->_doLiteralBlock($value,$indent);
 
     if (is_bool($value)) {
