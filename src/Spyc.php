@@ -1064,13 +1064,17 @@ class Spyc {
         $value   = trim(implode(': ', $explode));
         $this->checkKeysInValue($value);
       // Other methods currently don't parse valid json maps or arrays of maps correctly
-        if ( str_starts_with( $value, '[{' ) || str_starts_with( $value, '{"' ) ) {
-          $decoded = json_decode( preg_replace( '/^.*?:\s*/', '', $line ), true );
-          if ($decoded !== null || (json_last_error() === JSON_ERROR_NONE && $decoded === null)) {
-            // Accept null as valid JSON value, but only if no error occurred
+        // The default inline parser (_toType) does not correctly handle complex JSON objects.
+        // Attempt to parse as JSON first for values that look like potential JSON.
+        $first_char = isset($value[0]) ? $value[0] : '';
+        if ($first_char === '{' || $first_char === '[') {
+          $decoded = json_decode($value, true);
+          // If the value is valid JSON, use the decoded array.
+          // This correctly handles valid JSON 'null' as well.
+          if (json_last_error() === JSON_ERROR_NONE) {
             $value = $decoded;
           }
-          // Otherwise, leave $value as-is (fallback to original string)
+          // Otherwise, leave $value as a string for the legacy parser to handle.
         }
       }
       // Set the type of the value.  Int, string, etc
